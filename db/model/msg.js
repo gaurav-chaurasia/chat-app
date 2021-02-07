@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const connectionSchema = new Schema(
+const MSG_TYPE = ['FILE', 'TEXT'];
+
+const msgSchema = new Schema(
   {
-    user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
-    connection_id: { type: String, required: true, index: true },
+    sender_id: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
+    receiver_id: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
+    msg_type: { type: String, enum: MSG_TYPE, default: 'TEXT' },
+    msg: { type: String, required: true },
   },
   { timestamps: true },
 );
 
-module.exports = mongoose.model('Connection', connectionSchema);
+module.exports = mongoose.model('MSG', msgSchema);
