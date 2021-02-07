@@ -34,7 +34,7 @@ router.get("/logout", (req, res, next) => {
     req.logout();
     req.flash("danger", "You are Successfully logged out!");
   } else {
-    req.flash("info", "You are already logged out!");
+    req.flash("danger", "You are already logged out!");
   }
   res.redirect("/");
 });
