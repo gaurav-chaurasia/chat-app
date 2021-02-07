@@ -1,14 +1,23 @@
+// node modules 
 var createError  = require('http-errors');
 var express      = require('express');
 var path         = require('path');
 var cookieParser = require('cookie-parser');
 var logger       = require('morgan');
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const flash      = require("connect-flash");
 const layout     = require('express-ejs-layouts');
+require("dotenv").config();
 
+// local node modules
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// connect database
+require('./db/connect_db');
 
 // view engine setup
 app.use(layout);
@@ -21,6 +30,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// ----------------------------------------
+// passport configuration
+// ----------------------------------------
+app.use(
+  session({
+    key: 'chat-app',
+    secret: 'chat-app',
+    store: new MongoStore({ url: process.env.DATABASE_URI })
+  }),
+);
+app.use(flash());
+
+
+// ----------------------------------------
+// set local variables 
+// ----------------------------------------
+app.use((req, res, next) => {
+  res.locals.current_user = req.user;
+  res.locals.danger       = req.flash('danger');
+  res.locals.success      = req.flash('success');
+  next();
+});
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
