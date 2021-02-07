@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger       = require('morgan');
 const session    = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const passport   = require("passport");
 const flash      = require("connect-flash");
 const layout     = require('express-ejs-layouts');
 require("dotenv").config();
@@ -42,6 +43,8 @@ app.use(
     store: new MongoStore({ url: process.env.DATABASE_URI })
   }),
 );
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 
@@ -56,8 +59,8 @@ app.use((req, res, next) => {
 });
 
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(indexRouter);
+app.use(usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
