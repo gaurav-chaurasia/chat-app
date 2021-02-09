@@ -1,36 +1,4 @@
-// const users = document.querySelectorAll('.users');
-const middleHeader = $('.middle-header-container').children();
-const middleMain = $('.middle-msg-container').children()[0];
-const middleFooter = $('.middle-bottom-container');
-const current_user_id = $('.current_user').attr('id');
-
 let response;
-const SPINNER = `
-        <div class="spinner">
-            <div class="d-flex justify-content-center">
-                <div class="spinner-border text-success" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-        </div>`;
-const INFO = (txt) => {
-  return `<div class="spinner">
-                <div class="d-flex justify-content-center">
-                    <div class="alert alert-dark" role="alert">
-                        ${txt} <a href="/" class="alert-link"> HOME</a>
-                    </div>    
-                </div>
-            </div>`;
-};
-
-const get_data = async (url = '') => {
-  try {
-    response = await fetch(url);
-    return response.json();
-  } catch (err) {
-    return err;
-  }
-};
 
 async function loadMiddleClient() {
   const user_id = this.children[1].id;
@@ -41,11 +9,13 @@ async function loadMiddleClient() {
   middleHeader[1].id = user_id;
   middleHeader[0].src = user_img;
   middleHeader[1].innerText = username;
-console.log(user_id);
-console.log(user_img);
-console.log(username);
+  // console.log(user_id);
+  // console.log(user_img);
+  // console.log(username);
+  
   // add spinner to middle main and fetch msg;
   middleMain.innerHTML = SPINNER;
+  
   get_data(`/msg/chat/${user_id}`)
     .then((response) => {
       
