@@ -16,7 +16,8 @@ async function loadMiddleClient() {
   // add spinner to middle main and fetch msg;
   middleMain.innerHTML = SPINNER;
   
-  get_data(`/msg/chat/${user_id}`)
+  fetch(`/msg/chat/${user_id}`)
+    .then(response => response.json())
     .then((response) => {
       
       let el = '';

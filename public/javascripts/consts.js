@@ -66,12 +66,3 @@ const INFO = (txt) => {
         </div>
     </div>`;
 };
-
-const get_data = async (url = '') => {
-  try {
-    response = await fetch(url);
-    return response.json();
-  } catch (err) {
-    return err;
-  }
-};
