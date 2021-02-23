@@ -2,7 +2,7 @@
 
 > Note: All steps were performed using on Windows 10.  
 > [link](https://dlhd.herokuapp.com/msg)
-
+> [ScreenShots](#ScreenShots)
 
 ### INSTALLATIONS
 
@@ -58,10 +58,12 @@
 - Go to `http://localhost:3000/` in your browser 
 - It will automatically redirect you to the Home page and then ask for Signup or Login.
 
-> Home Page ROOT ROUTE
+#### ScreenShots
+
+> Home Page ROOT ROUTE    
 ![](public/images/4.png)
 
-> /msg page
+> /msg page    
 ![](public/images/2.png)
 
 ![](public/images/3.png)
