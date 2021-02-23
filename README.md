@@ -1,8 +1,8 @@
 # chat-app
 
 > Note: All steps were performed using on Windows 10.  
-> [link](https://dlhd.herokuapp.com/msg)
-> [ScreenShots](#ScreenShots)
+> [Link](https://dlhd.herokuapp.com/msg)  
+> [ScreenShots](#ScreenShots)  
 
 ### INSTALLATIONS
 
